@@ -1,0 +1,128 @@
+C:\gitcloud\conflict-based-search\cmake-build-debug\a_star_mine.exe
+Add start to open set
+iter: 0
+Add smallest f(8,0) = 10 to closed list
+Add neighbor node (7, 0) to open list
+Add neighbor node (8, 1) to open list
+Add neighbor node (6, 0) to open list
+iter: 1
+Add smallest f(6,0) = 9 to closed list
+Add neighbor node (5, 0) to open list
+Add neighbor node (4, 0) to open list
+iter: 2
+Add smallest f(4,0) = 8 to closed list
+Add neighbor node (4, 1) to open list
+Add neighbor node (2, 0) to open list
+iter: 3
+Add smallest f(2,0) = 7 to closed list
+Add neighbor node (1, 0) to open list
+Add neighbor node (2, 1) to open list
+Add neighbor node (0, 0) to open list
+iter: 4
+Add smallest f(2,1) = 7 to closed list
+Add neighbor node (1, 1) to open list
+Add neighbor node (2, 2) to open list
+iter: 5
+Add smallest f(2,2) = 7 to closed list
+Add neighbor node (3, 2) to open list
+Add neighbor node (1, 2) to open list
+Add neighbor node (4, 2) to open list
+Add neighbor node (0, 2) to open list
+iter: 6
+Add smallest f(4,1) = 8 to closed list
+Update neighbor node (4, 2) in open list
+iter: 7
+Add smallest f(4,2) = 8 to closed list
+Add neighbor node (5, 2) to open list
+Update neighbor node (3, 2) in open list
+iter: 8
+Add smallest f(3,2) = 8 to closed list
+iter: 9
+Add smallest f(1,0) = 9 to closed list
+iter: 10
+Add smallest f(5,0) = 9 to closed list
+iter: 11
+Add smallest f(1,1) = 9 to closed list
+iter: 12
+Add smallest f(1,2) = 9 to closed list
+iter: 13
+Add smallest f(0,0) = 10 to closed list
+iter: 14
+Add smallest f(7,0) = 10 to closed list
+iter: 15
+Add smallest f(8,1) = 10 to closed list
+Add neighbor node (8, 2) to open list
+iter: 16
+Add smallest f(0,2) = 10 to closed list
+Add neighbor node (0, 3) to open list
+iter: 17
+Add smallest f(5,2) = 10 to closed list
+Add neighbor node (5, 3) to open list
+Add neighbor node (7, 2) to open list
+iter: 18
+Add smallest f(8,2) = 10 to closed list
+Update neighbor node (7, 2) in open list
+iter: 19
+Add smallest f(7,2) = 10 to closed list
+Add neighbor node (7, 3) to open list
+iter: 20
+Add smallest f(0,3) = 10 to closed list
+Add neighbor node (0, 4) to open list
+iter: 21
+Add smallest f(5,3) = 10 to closed list
+Add neighbor node (5, 4) to open list
+iter: 22
+Add smallest f(7,3) = 10 to closed list
+Add neighbor node (7, 4) to open list
+iter: 23
+Add smallest f(0,4) = 10 to closed list
+Add neighbor node (1, 4) to open list
+Add neighbor node (0, 5) to open list
+Add neighbor node (2, 4) to open list
+iter: 24
+The destination cell is found
+success, iterations: 24 elapsed_time(s): 0.019 frequency:1263.16
+total cost: 9
+The path is num_expanded_nodes: 25
+num_generated_nodes: 28
+-> (0,8) -> (0,6) -> (0,4) -> (0,2) -> (1,2) -> (2,2) -> (2,0) -> (3,0) -> (4,0) -> (4,2)
+进程已结束，退出代码为 0
+
+
+C:\gitcloud\conflict-based-search\cmake-build-debug\a_star_mine.exe
+-> (0,8) -> (0,6) -> (0,4) -> (0,2) -> (2,2) -> (4,2)Add start to open set
+iter: 0
+Add smallest f(8,0) = 10 to closed list
+Add neighbor node (7, 0) to open list
+Add neighbor node (8, 1) to open list
+Add neighbor node (6, 0) to open list
+Add neighbor node (8, 2) to open list
+iter: 1
+Add smallest f(6,0) = 9 to closed list
+Add neighbor node (5, 0) to open list
+Add neighbor node (4, 0) to open list
+iter: 2
+Add smallest f(4,0) = 8 to closed list
+Add neighbor node (4, 1) to open list
+Add neighbor node (2, 0) to open list
+Add neighbor node (4, 2) to open list
+iter: 3
+Add smallest f(2,0) = 7 to closed list
+Add neighbor node (1, 0) to open list
+Add neighbor node (2, 1) to open list
+Add neighbor node (0, 0) to open list
+Add neighbor node (2, 2) to open list
+iter: 4
+Add smallest f(2,2) = 6 to closed list
+Add neighbor node (3, 2) to open list
+Add neighbor node (1, 2) to open list
+Add neighbor node (0, 2) to open list
+Add neighbor node (2, 4) to open list
+iter: 5
+The destination cell is found
+success, iterations: 5 elapsed_time(s): 0.006 frequency:833.333
+total cost: 5
+The path is num_expanded_nodes: 6
+num_generated_nodes: 17
+
+进程已结束，退出代码为 0

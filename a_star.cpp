@@ -169,7 +169,7 @@ bool AStar::a_star_search()
     auto root_handle = open_set.emplace(AStarNode(start, 0, f_start));
     location_to_heaphandle.insert(std::make_pair<>(start, root_handle));
 
-    cerr << "Add start to open set" << endl;
+    cout << "Add start to open set" << endl;
 
     // A* LINE 8
     // node that has already been evaluated. In other words, already been poped from open_set.
@@ -180,7 +180,7 @@ bool AStar::a_star_search()
     // while openSet is not empty
     while (!open_set.empty() && iter < INT_MAX)
     {
-        cerr << "iter: " << iter << endl;
+        cout << "iter: " << iter << endl;
         // A* LINE 10
         // This operation can occur in O(Log(N)) time if open_set is a min-heap or a priority queue
         // current := the node in open_set having the lowest f_score[] value
@@ -191,11 +191,11 @@ bool AStar::a_star_search()
         // if current = goal
         if (is_goal(current.location))
         {
-            cerr << "The destination cell is found\n";
+            cout << "The destination cell is found\n";
             // A* LINE 12
             // return reconstruct_path(cameFrom, current)
             double elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
-            cerr << "success, iterations: " << iter << " elapsed_time(s): " << elapsed_time
+            cout << "success, iterations: " << iter << " elapsed_time(s): " << elapsed_time
                  << " frequency:" << double (iter) / elapsed_time << endl;
 
             // construct path LINE 2
@@ -230,9 +230,9 @@ bool AStar::a_star_search()
             if (path_file.is_open())
             {
                 // construct path LINE 6
-                cerr << "total cost: " << path.size() - 1 << endl;
+                cout << "total cost: " << path.size() - 1 << endl;
                 path_file << path.size() << "\n";
-                cerr << "The path is ";
+                cout << "The path is ";
                 for(const auto & element : path)
                 {
                     cout << "-> (" << element.x << "," << element.y << ") ";
@@ -241,11 +241,11 @@ bool AStar::a_star_search()
             }
             else
             {
-                cerr << "Unable to create path file.\n";
+                cout << "Unable to create path file.\n";
             }
 
-            cerr << "num_expanded_nodes: " << num_expanded_nodes << endl;
-            cerr << "num_generated_nodes: " << num_generated_nodes << endl;
+            cout << "num_expanded_nodes: " << num_expanded_nodes << endl;
+            cout << "num_generated_nodes: " << num_generated_nodes << endl;
 
             return true;
         }
@@ -259,7 +259,7 @@ bool AStar::a_star_search()
         // Add this vertex to the closed list
         closed_set.insert(current.location);
 
-        cerr << "Add smallest f(" << current.location.y << "," << current.location.x << ") = "
+        cout << "Add smallest f(" << current.location.y << "," << current.location.x << ") = "
              << current.f_score << " to closed list" << endl;
 
         // A* LINE 19
@@ -281,7 +281,7 @@ bool AStar::a_star_search()
                     // cost of the cheapest path from start to n currently known
                     int tentative_g_score = current.g_score + 1;
 
-                    // cerr << "neighbor tentative_g_score: " << tentative_g_score << " ";
+                    // cout << "neighbor tentative_g_score: " << tentative_g_score << " ";
 
                     // A* LINE 22
                     // 不在open_set中
@@ -306,7 +306,7 @@ bool AStar::a_star_search()
                         location_to_heaphandle.insert(std::make_pair<>(neighbor, neighbor_handle));
                         num_generated_nodes++;
 
-                        cerr << "Add neighbor node (" << neighbor.y << ", " << neighbor.x << ") to open list" << endl;
+                        cout << "Add neighbor node (" << neighbor.y << ", " << neighbor.x << ") to open list" << endl;
                     }
                     // A* LINE 27
                     else // 在open_set中
@@ -333,7 +333,7 @@ bool AStar::a_star_search()
 
                             open_set.increase(neighbor_handle);
 
-                            cerr << "Update neighbor node (" << neighbor.y << ", " << neighbor.x << ") in open list" << endl;
+                            cout << "Update neighbor node (" << neighbor.y << ", " << neighbor.x << ") in open list" << endl;
                         }
                     }
 
@@ -358,7 +358,7 @@ void AStar::output_map()
     if (map_file.is_open())
     {
         map_file << num_rows << " " << num_columns << "\n";
-        cerr << "Parameter file created successfully.\n";
+        cout << "Parameter file created successfully.\n";
 
         for(int i=0;i<num_rows;i++)
         {
