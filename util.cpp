@@ -1,10 +1,12 @@
 //
 // Created by take_ on 2023/9/7.
 //
-#include <iostream>
 #include "util.hpp"
+#include <iostream>
+
 
 using namespace std;
+
 
 void print_single_constraint(const NegativeConstraint& input_constraint)
 {
@@ -17,6 +19,7 @@ void print_single_constraint(const NegativeConstraint& input_constraint)
 
     cerr << "], time_step: " << input_constraint.time_step << "}" << endl;
 }
+
 
 Location move_agent(Location current_location, int direction)
 {
