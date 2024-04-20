@@ -23,7 +23,7 @@ void print_single_constraint(const NegativeConstraint& input_constraint)
 
 Location move_agent(Location current_location, int action_choice)
 {
-    if(action_choice == 0)
+    if(action_choice == 0) // wait
     {
         return current_location;
     }
