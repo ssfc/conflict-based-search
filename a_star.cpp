@@ -16,7 +16,7 @@ AStar::AStar(Location input_src, Location input_dest):
         num_generated_nodes(0)
 // 0表示无障碍, 1表示有障碍。
 {
-    ifstream map_file("a_star_map.txt");
+    ifstream map_file("../instances/a_star_map.txt");
     if (map_file.is_open())
     {
         map_file >> num_rows >> num_columns;
