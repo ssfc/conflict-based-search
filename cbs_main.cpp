@@ -3,9 +3,9 @@
 //
 // A c++ implementation for conflict-based search.
 
-#include <boost/program_options.hpp>
-
 #include "high_level.hpp"
+
+#include <boost/program_options.hpp>
 
 
 using namespace std;
