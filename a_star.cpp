@@ -121,7 +121,7 @@ std::vector<Location> AStar::get_neighbors(const Location& current_location)
 {
     vector<Location> children;
 
-    for(int i=1;i<5;i++)
+    for(int i=0;i<num_action_choices;i++)
     {
         // A* LINE 13
         // for each child of current
