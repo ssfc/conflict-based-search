@@ -21,28 +21,28 @@ void print_single_constraint(const NegativeConstraint& input_constraint)
 }
 
 
-Location move_agent(Location current_location, int direction)
+Location move_agent(Location current_location, int action_choice)
 {
-    if(direction == 0)
+    if(action_choice == 0)
     {
         return current_location;
     }
-    else if(direction == 1)
+    else if(action_choice == 1)
     {
         // north
         return Location{current_location.x, current_location.y + 1};
     }
-    else if(direction == 2)
+    else if(action_choice == 2)
     {
         // south
         return Location{current_location.x, current_location.y - 1};
     }
-    else if(direction == 3)
+    else if(action_choice == 3)
     {
         // west
         return Location{current_location.x + 1, current_location.y};
     }
-    else if(direction == 4)
+    else if(action_choice == 4)
     {
         // east
         return Location{current_location.x - 1, current_location.y};

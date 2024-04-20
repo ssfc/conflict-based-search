@@ -235,6 +235,6 @@ public:
 
 using Path = std::vector<Location>;
 void print_single_constraint(const NegativeConstraint& input_constraint);
-Location move_agent(Location current_location, int direction);
+Location move_agent(Location current_location, int action_choice);
 
 #endif //DRAW_PATH_PY_UTIL_HPP
