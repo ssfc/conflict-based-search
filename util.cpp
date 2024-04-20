@@ -47,6 +47,26 @@ Location move_agent(Location current_location, int action_choice)
         // east
         return Location{current_location.x - 1, current_location.y};
     }
+    else if(action_choice == 5)
+    {
+        // north two
+        return Location{current_location.x, current_location.y + 2};
+    }
+    else if(action_choice == 6)
+    {
+        // south two
+        return Location{current_location.x, current_location.y - 2};
+    }
+    else if(action_choice == 7)
+    {
+        // east two
+        return Location{current_location.x + 2, current_location.y};
+    }
+    else if(action_choice == 8)
+    {
+        // west two
+        return Location{current_location.x - 2, current_location.y};
+    }
     else
     {
         return Location{-1, -1};
