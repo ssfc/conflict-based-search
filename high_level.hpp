@@ -80,6 +80,9 @@ private:
     int num_generated_high_level_nodes;
     int num_expanded_high_level_nodes;
     size_t num_expanded_low_level_nodes;
+    size_t total_vertex_constraint;
+    size_t total_edge_constraint;
+
 public:
     HighLevel(std::string input_filename); // constructor
 
@@ -115,7 +118,7 @@ public:
     // {'a1': 1, 'a2': 4, 'location': [(3, 4)], 'time_step': 6},
     // {'a1': 2, 'a2': 3, 'location': [(3, 1), (2, 1)], 'time_step': 4},
     // {'a1': 2, 'a2': 4, 'location': [(3, 1)], 'time_step': 3}]
-    static bool get_all_paths_first_conflict(std::vector<std::vector<TimeLocation>> input_paths, Conflict& first_conflict);
+    bool get_all_paths_first_conflict(std::vector<std::vector<TimeLocation>> input_paths, Conflict& first_conflict);
 
     // Q: 页面中函数vector<NegativeConstraint> generate_constraints_from_conflict(const Conflict& input_conflict)的功能是什么？
     // 根据一个碰撞，生成两个正向约束，用于重新规划两条路径，使得它们不再发生碰撞。

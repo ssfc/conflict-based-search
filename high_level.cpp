@@ -16,7 +16,9 @@ HighLevel::HighLevel(string input_filename):
         start_time(clock()),
         num_generated_high_level_nodes(0),
         num_expanded_high_level_nodes(0),
-        num_expanded_low_level_nodes(0)
+        num_expanded_low_level_nodes(0),
+        total_vertex_constraint(0),
+        total_edge_constraint(0)
 {
     // ifstream fromfile("map_8by8_obst12_agents5_ex_test.txt");
     // ifstream fromfile("./benchmark/8x8_obst12/map_8by8_obst12_agents5_ex_test.txt");
@@ -207,6 +209,7 @@ bool HighLevel::get_all_paths_first_conflict(vector<vector<TimeLocation>> input_
                     first_conflict.agent_id_2 = j;
                     first_conflict.locations.emplace_back(a1_next_location);
                     first_conflict.time_step = t + 1; // 因为是在next_location冲突的, 所以时间是t+1
+                    total_vertex_constraint++;
 
                     return true;
                 }
@@ -220,6 +223,7 @@ bool HighLevel::get_all_paths_first_conflict(vector<vector<TimeLocation>> input_
                     first_conflict.locations.emplace_back(a1_current_location);
                     first_conflict.locations.emplace_back(a1_next_location);
                     first_conflict.time_step = t + 1;
+                    total_edge_constraint++;
 
                     return true;
                 }
@@ -326,6 +330,8 @@ bool HighLevel::high_level_search()
             cerr << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
             // cerr << "Generated nodes: " << num_generated_high_level_nodes << endl;
             cerr << "lowLevelExpanded: " << num_expanded_low_level_nodes << endl;
+            cout << "total vertex constraint: " << total_vertex_constraint << endl;
+            cout << "total edge constraint: " << total_edge_constraint << endl;
             cerr << "Solution:" << endl;
             print_node_paths(best_node);
 
