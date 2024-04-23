@@ -64,10 +64,10 @@ HighLevel::HighLevel(string input_filename):
 
         // 检查地图读入是否正确。
         /*
-        std::cerr << "goals[0].x: " << goals[0].x << std::endl;
-        std::cerr << "goals[0].y: " << goals[0].y << std::endl;
+        std::cout << "goals[0].x: " << goals[0].x << std::endl;
+        std::cout << "goals[0].y: " << goals[0].y << std::endl;
 
-        std::cerr << "obstacles: ";
+        std::cout << "obstacles: ";
         for(int i=0; i<num_rows; i++)
         {
             for (int j = 0; j < num_columns; j++)
@@ -75,11 +75,11 @@ HighLevel::HighLevel(string input_filename):
                 if(map[i][j] == 0)
                 {
                     // 既然j对应x, i对应y, 那么(j, i)对应(x, y)
-                    cerr << "(" << j << "," << i << ") ";
+                    cout << "(" << j << "," << i << ") ";
                 }
             }
         }
-        cerr << endl;
+        cout << endl;
          */
 
         fromfile.close();
@@ -87,7 +87,7 @@ HighLevel::HighLevel(string input_filename):
         // int iter_goal = 0;
         for(auto this_goal : goals)
         {
-            // cerr << "iter_goal: " << iter_goal << endl;
+            // cout << "iter_goal: " << iter_goal << endl;
             auto this_agent_h_values = compute_agent_h_values(this_goal);
             multi_agent_h_values.emplace_back(this_agent_h_values);
             // print_multi_agent_h_values();
@@ -110,7 +110,7 @@ unordered_map<Location, int> HighLevel::compute_agent_h_values(Location input_go
     // int iter_computed = 0;
     while(!open_list.empty())
     {
-        // cerr << "iter computed: " << iter_computed << endl;
+        // cout << "iter computed: " << iter_computed << endl;
 
         // print open_list
         // print_constructor_list(open_list);
@@ -119,15 +119,15 @@ unordered_map<Location, int> HighLevel::compute_agent_h_values(Location input_go
         // print_agent_h_values(h_values);
 
         auto current = open_list.top();
-        // cerr << "Current locations: "; print_constructor_list_node(current);
+        // cout << "Current locations: "; print_constructor_list_node(current);
         open_list.pop();
         // 计算h_values的时候不需要考虑原地不动的情况(因为这种情况下h_value是不变的), 所以i从1开始。
         for(int i=1;i<5;i++)
         {
             auto child_location = move_agent(current.location, i);
-            // cerr << "child_location: (" << child_location.y << "," << child_location.x << ")" << endl;
+            // cout << "child_location: (" << child_location.y << "," << child_location.x << ")" << endl;
             int child_cost = current.cost + 1;
-            // cerr << "child_cost: " << child_cost << endl;
+            // cout << "child_cost: " << child_cost << endl;
 
             // test whether child locations is out of range.
             if(child_location.y < 0 || child_location.y >= num_rows
@@ -142,11 +142,11 @@ unordered_map<Location, int> HighLevel::compute_agent_h_values(Location input_go
             }
 
             auto child = ConstructorListNode{child_cost, child_location};
-            // cerr << "child: "; print_constructor_list_node(child);
+            // cout << "child: "; print_constructor_list_node(child);
             // child_location 存在于 closed_list 中
             if (h_values.find(child_location) != h_values.end())
             {
-                // cerr << "child_location in closed list" << endl;
+                // cout << "child_location in closed list" << endl;
                 if(h_values[child_location] > child_cost)
                 {
                     h_values[child_location] = child_cost;
@@ -155,7 +155,7 @@ unordered_map<Location, int> HighLevel::compute_agent_h_values(Location input_go
             }
             else // child_location 不在 closed_list 中
             {
-                // cerr << "child_location not in closed list" << endl;
+                // cout << "child_location not in closed list" << endl;
                 h_values[child_location] = child_cost;
                 open_list.emplace(child);
             }
@@ -290,14 +290,14 @@ bool HighLevel::high_level_search()
     // print_node_paths(root);
 
     // Evaluate A1 LINE 3
-    // cerr << "root cost: " << root.cost << endl;
+    // cout << "root cost: " << root.cost << endl;
 
 
     // Implement A1 LINE 4
     // insert Root to OPEN
     open_list.emplace(root);
     num_generated_high_level_nodes++;
-    // cerr << "Generate node " << num_generated_high_level_nodes << endl;
+    // cout << "Generate node " << num_generated_high_level_nodes << endl;
 
     //  A1 LINE 5
     // while OPEN not empty do
@@ -305,34 +305,34 @@ bool HighLevel::high_level_search()
     while(!open_list.empty())
     // while(!open_list.empty() && iter_high_level < 2)
     {
-        // cerr << "High level iteration: " << iter_high_level << endl;
+        // cout << "High level iteration: " << iter_high_level << endl;
         //  A1 LINE 6
         // P ← the best node from OPEN // the lowest solution cost
         auto best_node = open_list.top();
         Conflict best_node_conflict;
         bool is_found_conflict = get_all_paths_first_conflict(best_node.paths, best_node_conflict);
         num_expanded_high_level_nodes++;
-        // cerr << "Expand node " << num_expanded_high_level_nodes << endl;
+        // cout << "Expand node " << num_expanded_high_level_nodes << endl;
         open_list.pop();
 
-        // cerr << "best node cost: " << best_node.cost << endl;
+        // cout << "best node cost: " << best_node.cost << endl;
         //  A1 LINE 7
         // Validate the paths in P until a first_conflict occurs.
         //  A1 LINE 8
         // if P has no first_conflict then
         if(!is_found_conflict)  // 没有冲突，意味着找到了解。
         {
-            cerr <<"\nFound a solution! \n";
+            cout <<"\nFound a solution! \n";
             double elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
-            cerr << "time(s): " << elapsed_time
+            cout << "time(s): " << elapsed_time
                  << " frequency:" << double(iter_high_level) / elapsed_time << endl;
-            cerr << "Sum of costs: " << best_node.cost << endl;
-            cerr << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
-            // cerr << "Generated nodes: " << num_generated_high_level_nodes << endl;
-            cerr << "lowLevelExpanded: " << num_expanded_low_level_nodes << endl;
+            cout << "Sum of costs: " << best_node.cost << endl;
+            cout << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
+            // cout << "Generated nodes: " << num_generated_high_level_nodes << endl;
+            cout << "lowLevelExpanded: " << num_expanded_low_level_nodes << endl;
             cout << "total vertex constraint: " << total_vertex_constraint << endl;
             cout << "total edge constraint: " << total_edge_constraint << endl;
-            cerr << "Solution:" << endl;
+            cout << "Solution:" << endl;
             print_node_paths(best_node);
 
             //  A1 LINE 9
@@ -374,7 +374,7 @@ bool HighLevel::high_level_search()
             // 增量更新，先减再加
             new_node.cost -= new_node.paths[ai].size();
             bool is_path_found = low_level.low_level_search(new_node.paths[ai], num_expanded_low_level_nodes);
-            // cerr << "Agent " << ai << " new_constraint path: " << endl; print_path(new_node.paths[ai]);
+            // cout << "Agent " << ai << " new_constraint path: " << endl; print_path(new_node.paths[ai]);
 
             if(is_path_found)
             {
@@ -386,7 +386,7 @@ bool HighLevel::high_level_search()
                 // Insert new_node to OPEN
                 open_list.emplace(new_node);
                 num_generated_high_level_nodes++;
-                // cerr << "Generate node " << num_generated_high_level_nodes << endl;
+                // cout << "Generate node " << num_generated_high_level_nodes << endl;
             }
         }
 
@@ -405,54 +405,54 @@ vector<vector<int>> HighLevel::get_map()
 // debug func
 void HighLevel::print_map()
 {
-    cerr << "num rows: " << num_rows << " num columns: " << num_columns << endl;
+    cout << "num rows: " << num_rows << " num columns: " << num_columns << endl;
     for(auto & each_row : map)
     {
         for(int element : each_row)
         {
-            cerr << element << " ";
+            cout << element << " ";
         }
-        cerr << endl;
+        cout << endl;
     }
-    cerr << "num agents: " << num_agents << endl;
+    cout << "num agents: " << num_agents << endl;
     for(int i=0;i<num_agents;i++)
     {
-        cerr << "(" << starts[i].y << "," << starts[i].x << ")->(";
-        cerr << goals[i].y << "," << goals[i].x << ")" << endl;
+        cout << "(" << starts[i].y << "," << starts[i].x << ")->(";
+        cout << goals[i].y << "," << goals[i].x << ")" << endl;
     }
 }
 
 // debug func
 void HighLevel::print_constructor_list_node(ConstructorListNode input_node)
 {
-    cerr << "(" << input_node.location.y << "," << input_node.location.x << ")" << endl;
+    cout << "(" << input_node.location.y << "," << input_node.location.x << ")" << endl;
 }
 
 // debug func
 void HighLevel::print_constructor_list(std::priority_queue<ConstructorListNode> input_list)
 {
     priority_queue<ConstructorListNode> temp = std::move(input_list);
-    cerr << "constructor open list: {";
+    cout << "constructor open list: {";
     while (!temp.empty())
     {
-        cerr << "((" << temp.top().location.y << "," << temp.top().location.x;
-        cerr << ")," << temp.top().cost << "), ";
+        cout << "((" << temp.top().location.y << "," << temp.top().location.x;
+        cout << ")," << temp.top().cost << "), ";
         temp.pop();
     }
-    cerr << "}" << endl;
+    cout << "}" << endl;
 }
 
 // debug func
 void HighLevel::print_agent_h_values(const unordered_map<Location, int>& input_h_values)
 {
-    cerr << "input_h_values: {";
+    cout << "input_h_values: {";
     for (const auto& pair : input_h_values)
     {
         const Location& coord = pair.first;
         int value = pair.second;
-        cerr << "((" << coord.y << "," << coord.x << ")," << value << "),";
+        cout << "((" << coord.y << "," << coord.x << ")," << value << "),";
     }
-    cerr << "}" << endl;
+    cout << "}" << endl;
 }
 
 // debug func
@@ -463,9 +463,9 @@ void HighLevel::print_multi_agent_h_values()
         for (auto pair : this_heuristic)
         {
             const Location& coord = pair.first;
-            cerr << "Key: " << coord.y << " " << coord.x << " , Value: " << pair.second << endl;
+            cout << "Key: " << coord.y << " " << coord.x << " , Value: " << pair.second << endl;
         }
-        cerr << endl;
+        cout << endl;
     }
 }
 
@@ -474,9 +474,9 @@ void HighLevel::print_path(const std::vector<TimeLocation>& input_path)
 {
     for(auto element : input_path)
     {
-        cerr << "(" << element.location.y << "," << element.location.x << ")" << ", ";
+        cout << "(" << element.location.y << "," << element.location.x << ")" << ", ";
     }
-    cerr << endl;
+    cout << endl;
 }
 
 // debug func
@@ -484,12 +484,12 @@ void HighLevel::print_node_paths(HighLevelNode input_node)
 {
     for(int i=0;i<input_node.paths.size();i++)
     {
-        cerr << "agent " << i << ": ";
+        cout << "agent " << i << ": ";
         for(auto each_node : input_node.paths[i])
         {
-            cerr << "(" << each_node.location.x << "," << each_node.location.y << "),";
+            cout << "(" << each_node.location.x << "," << each_node.location.y << "),";
         }
-        cerr << endl;
+        cout << endl;
     }
 }
 
