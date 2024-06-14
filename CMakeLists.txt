@@ -3,10 +3,10 @@ project(conflict_based_search_mine)
 
 set(CMAKE_CXX_STANDARD 17)
 
-set(Boost_INCLUDE_DIR c:/MinGW_distro/include/)
-set(Boost_LIBRARY_DIR c:/MinGW_distro/lib/)
+set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake")
+set(CMAKE_PREFIX_PATH "C:/vcpkg/installed/x64-windows")
 
-find_package(Boost 1.84.0 REQUIRED COMPONENTS program_options)
+find_package(Boost REQUIRED COMPONENTS program_options)
 include_directories(${Boost_INCLUDE_DIR})
 
 add_executable(a_star_mine a_star_main.cpp
