@@ -105,6 +105,7 @@ std::vector<TimeLocation> LowLevel::get_neighbors(TimeLocation current_time_loca
 {
     vector<TimeLocation> neighbor_time_locations;
     // directions for move() for each agent: 0, 1, 2, 3, 4
+    // 虽然在util.cpp中也提供了south two的选项, 但是这里只选择了前5个, 所以就只有前进一步的了
     for(int i=0;i<5;i++)
     {
         auto neighbor_location = move_agent(current_time_location.location, i);
