@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="cbs_mine" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-i ../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o ../result/experimental_results.csv" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="conflict_based_search_mine" TARGET_NAME="cbs_mine" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="conflict_based_search_mine" RUN_TARGET_NAME="cbs_mine">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>
