@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 
 // Test on ubuntu platform:
 // cmake . ; make
-// ./cbs_mine -i ./benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o output.yaml
+// ./cbs_mine -i ./benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o ./result/experimental_results.csv
 
 // Test on windows platform:
 //  -i ../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o ../result/experimental_results.csv
