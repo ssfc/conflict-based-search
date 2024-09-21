@@ -191,8 +191,13 @@ int main(int argc, char *argv[])
             }
             else
             {
-                HighLevel test_cbs(instance_name, output_filename);
-                test_cbs.high_level_search();
+                // 如果不够, 就算到够为止
+                while(freq < 5)
+                {
+                    HighLevel test_cbs(instance_name, output_filename);
+                    test_cbs.high_level_search();
+                    freq++;
+                }
             }
         }
     }
