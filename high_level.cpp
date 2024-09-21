@@ -12,6 +12,7 @@ HighLevel::HighLevel(string input_filename,
                      string  _to_filename):
         instance_filename(std::move(input_filename)),
         to_log_name(std::move(_to_filename)),
+        to_csv_path("../result/experimental_results.csv"),
         num_rows(0),
         num_columns(0),
         num_agents(0),

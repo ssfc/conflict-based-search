@@ -4,6 +4,7 @@
 
 #ifndef DRAW_PATH_PY_CBS_H
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <queue>
@@ -63,6 +64,7 @@ private:
     // IO var;
     std::string instance_filename;
     std::string to_log_name;
+    std::string to_csv_path;
 
     // data structure var;
     size_t num_rows;
@@ -130,6 +132,129 @@ public:
     // @return multi_agent_constraints (vector<NegativeConstraint>): [{‘agent’: 0, ‘location’: [(3, 4)], ‘time_step’: 5},
     // {‘agent’: 1, ‘location’: [(3, 4)], ‘time_step’: 5}]
     static std::vector<NegativeConstraint> generate_constraints_from_conflict(const Conflict& input_conflict);
+
+    struct ExperimentalResult {
+        int id;
+        std::string instance;
+        std::string device;
+        std::string method;
+        bool disappear_at_goal;
+        int rand_seed;
+        double cost;
+        double run_time;
+        std::string comment;
+        std::string method_source;
+        std::string date_edit;
+    };
+
+    // 删除引号的辅助函数
+    static std::string remove_quotes(const std::string& str)
+    {
+        if (!str.empty() && str.front() == '"' && str.back() == '"')
+        {
+            return str.substr(1, str.size() - 2);
+        }
+
+        return str;
+    }
+
+    // 统计当前实验结果在csv中已经出现的次数
+    [[nodiscard]] int count_freqs() const
+    {
+        std::vector<ExperimentalResult> experimental_results;
+        std::ifstream from_csv(to_csv_path);
+
+        if (!from_csv.is_open()) {
+            std::cerr << "Failed to open from_csv" << std::endl;
+            return -1;
+        }
+
+        std::string line;
+        bool isFirstLine = true;
+
+        // 读取文件逐行处理
+        int iter = 0;
+        while (std::getline(from_csv, line)) {
+            // std::cout << "iter: " << iter << std::endl;
+            if (isFirstLine) {
+                isFirstLine = false; // 跳过表头
+                continue;
+            }
+
+            std::stringstream ss(line);
+            std::string token;
+            ExperimentalResult result;
+
+            // 逐字段读取
+            std::getline(ss, token, ',');
+            // std::cout << "result id: " << token << std::endl;
+            result.id = std::stoi(remove_quotes(token));
+
+            std::getline(ss, token, ',');
+            // std::cout << "instance: " << token << std::endl;
+            result.instance = remove_quotes(token);
+
+            std::getline(ss, token, ',');
+            // std::cout << "device: " << token << std::endl;
+            result.device = remove_quotes(token);
+
+            std::getline(ss, token, ',');
+            // std::cout << "method: " << token << std::endl;
+            result.method = remove_quotes(token);
+
+            std::getline(ss, token, ',');
+            // std::cout << "disappear: " << token << std::endl;
+            result.disappear_at_goal = std::stoi(remove_quotes(token));
+
+            std::getline(ss, token, ',');
+            // std::cout << "rand seed: " << token << std::endl;
+            result.rand_seed = std::stoi(remove_quotes(token));
+
+            std::getline(ss, token, ',');
+            // std::cout << "cost: " << token << std::endl;
+            result.cost = std::stod(remove_quotes(token));
+
+            std::getline(ss, token, ',');
+            // std::cout << "run time: " << token << std::endl;
+            result.run_time = std::stod(remove_quotes(token));
+
+            std::getline(ss, token, ',');
+            result.comment = remove_quotes(token);
+
+            std::getline(ss, token, ',');
+            result.method_source = remove_quotes(token);
+
+            std::getline(ss, token, ',');
+            result.date_edit = remove_quotes(token);
+
+            experimental_results.push_back(result);
+
+            iter++;
+        }
+
+        from_csv.close();
+
+        int freq = 0;
+        for(const auto& result : experimental_results)
+        {
+            // 使用 std::filesystem::path 提取文件名
+            std::filesystem::path filePath(instance_filename);
+            std::string instance = filePath.filename().string(); // 提取文件名部分
+
+            if(result.device == "12400F"
+               && result.instance == instance
+               && result.method == "cbs-mine"
+               && result.disappear_at_goal == 1
+               && result.rand_seed == -1
+                    )
+            {
+                // std::cout << result.disappear_at_goal << " " << disappear_at_goal << std::endl;
+                freq++;
+            }
+        }
+
+        return freq;
+    }
 
     // Q: 页面中函数bool high_level_search()的功能是什么？
     // 为多个智能体在地图上寻找不冲突的路径，使用了CBS算法的高层搜索。
