@@ -220,3 +220,9 @@ id,instance,device,method,disappear_at_goal,rand_seed,cost,run_time,comment,meth
 219,map_8by8_obst12_agents8_ex20.yaml,12400F,whoenig-origin,1,-1,51,0.096747,https://github.com/whoenig/libMultiRobotPlanning,https://github.com/whoenig/libMultiRobotPlanning,2024/6/14 19:22
 220,map_8by8_obst12_agents8_ex20.yaml,12400F,whoenig-origin,1,-1,51,0.097094,https://github.com/whoenig/libMultiRobotPlanning,https://github.com/whoenig/libMultiRobotPlanning,2024/6/14 19:22
 221,map_8by8_obst12_agents8_ex20.yaml,12400F,whoenig-origin,1,-1,51,0.096761,https://github.com/whoenig/libMultiRobotPlanning,https://github.com/whoenig/libMultiRobotPlanning,2024/6/14 19:22
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.144075,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:46:31
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.132457,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:46:34
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.132053,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:46:35
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.131966,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:46:35
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.132369,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:46:36
+-1,map_8by8_obst12_agents8_ex0.txt,12400F,cbs-mine,0,-1,70,112.972,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 15:49:14
