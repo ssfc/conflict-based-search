@@ -11,6 +11,130 @@
 using namespace std;
 
 
+struct ExperimentalResult {
+    int id;
+    std::string instance;
+    std::string device;
+    std::string method;
+    bool disappear_at_goal;
+    int rand_seed;
+    double cost;
+    double run_time;
+    std::string comment;
+    std::string method_source;
+    std::string date_edit;
+};
+
+// 删除引号的辅助函数
+static std::string remove_quotes(const std::string& str)
+{
+    if (!str.empty() && str.front() == '"' && str.back() == '"')
+    {
+        return str.substr(1, str.size() - 2);
+    }
+
+    return str;
+}
+
+// 统计当前实验结果在csv中已经出现的次数
+[[nodiscard]] int count_freqs(const std::string& _from_map_name, const std::string& _csv_path)
+{
+    std::vector<ExperimentalResult> experimental_results;
+    std::ifstream from_csv(_csv_path);
+
+    if (!from_csv.is_open()) {
+        std::cerr << "Failed to open from_csv " << _csv_path << std::endl;
+        return -1;
+    }
+
+    std::string line;
+    bool isFirstLine = true;
+
+    // 读取文件逐行处理
+    int iter = 0;
+    while (std::getline(from_csv, line)) {
+        // std::cout << "iter: " << iter << std::endl;
+        if (isFirstLine) {
+            isFirstLine = false; // 跳过表头
+            continue;
+        }
+
+        std::stringstream ss(line);
+        std::string token;
+        ExperimentalResult result;
+
+        // 逐字段读取
+        std::getline(ss, token, ',');
+        // std::cout << "result id: " << token << std::endl;
+        result.id = std::stoi(remove_quotes(token));
+
+        std::getline(ss, token, ',');
+        // std::cout << "instance: " << token << std::endl;
+        result.instance = remove_quotes(token);
+
+        std::getline(ss, token, ',');
+        // std::cout << "device: " << token << std::endl;
+        result.device = remove_quotes(token);
+
+        std::getline(ss, token, ',');
+        // std::cout << "method: " << token << std::endl;
+        result.method = remove_quotes(token);
+
+        std::getline(ss, token, ',');
+        // std::cout << "disappear: " << token << std::endl;
+        result.disappear_at_goal = std::stoi(remove_quotes(token));
+
+        std::getline(ss, token, ',');
+        // std::cout << "rand seed: " << token << std::endl;
+        result.rand_seed = std::stoi(remove_quotes(token));
+
+        std::getline(ss, token, ',');
+        // std::cout << "cost: " << token << std::endl;
+        result.cost = std::stod(remove_quotes(token));
+
+        std::getline(ss, token, ',');
+        // std::cout << "run time: " << token << std::endl;
+        result.run_time = std::stod(remove_quotes(token));
+
+        std::getline(ss, token, ',');
+        result.comment = remove_quotes(token);
+
+        std::getline(ss, token, ',');
+        result.method_source = remove_quotes(token);
+
+        std::getline(ss, token, ',');
+        result.date_edit = remove_quotes(token);
+
+        experimental_results.push_back(result);
+
+        iter++;
+    }
+
+    from_csv.close();
+
+    int freq = 0;
+    for(const auto& result : experimental_results)
+    {
+        // 使用 std::filesystem::path 提取文件名
+        std::filesystem::path filePath(_from_map_name);
+        std::string instance = filePath.filename().string(); // 提取文件名部分
+
+        if(result.device == "12400F"
+           && result.instance == instance
+           && result.method == "cbs-mine"
+           && result.disappear_at_goal == 0
+           && result.rand_seed == -1
+                )
+        {
+            // std::cout << result.disappear_at_goal << " " << disappear_at_goal << std::endl;
+            freq++;
+        }
+    }
+
+    return freq;
+}
+
+
 // Driver program to test above function
 int main(int argc, char *argv[])
 {
@@ -55,9 +179,21 @@ int main(int argc, char *argv[])
         for(int i=5;i<10;i++)
         {
             string instance_name = "../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex" +
-                    std::to_string(10) + ".txt";
-            HighLevel test_cbs(instance_name, output_filename);
-            test_cbs.high_level_search();
+                    std::to_string(i) + ".txt";
+
+            auto freq = count_freqs(instance_name, output_filename);
+            std::cout << "freq: " << freq << std::endl;
+
+            if (freq >= 5)
+            {
+                std::cout << "Already have more than 5 results on this Device-Instance-Method-Disappear-Seed"
+                          << std::endl;
+            }
+            else
+            {
+                HighLevel test_cbs(instance_name, output_filename);
+                test_cbs.high_level_search();
+            }
         }
     }
     else

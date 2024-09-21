@@ -262,17 +262,6 @@ vector<NegativeConstraint> HighLevel::generate_constraints_from_conflict(const C
 
 bool HighLevel::high_level_search()
 {
-    auto freq = count_freqs();
-    std::cout << "freq: " << freq << std::endl;
-
-    if (freq >= 5)
-    {
-        std::cout << "Already have more than 5 results on this Device-Instance-Method-Disappear-Seed"
-                  << std::endl;
-
-        return false;
-    }
-
     // A1 LINE 1
     // Root.multi_agent_constraints = ∅ // 最开始无约束
     HighLevelNode root;
