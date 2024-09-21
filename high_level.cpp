@@ -324,17 +324,36 @@ bool HighLevel::high_level_search()
         // if P has no first_conflict then
         if(!is_found_conflict)  // 没有冲突，意味着找到了解。
         {
+            std::ofstream to_log(to_log_name, std::ios::out);
+
             cout <<"\nFound a solution! \n";
+            to_log <<"Found a solution! \n";
+
             double elapsed_time = (clock() - start_time) / CLOCKS_PER_SEC;
             cout << "time(s): " << elapsed_time
                  << " frequency:" << double(iter_high_level) / elapsed_time << endl;
+            to_log << "time(s): " << elapsed_time
+                 << " frequency:" << double(iter_high_level) / elapsed_time << endl;
+
             cout << "Sum of costs: " << best_node.cost << endl;
+            to_log << "Sum of costs: " << best_node.cost << endl;
+
             cout << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
+            to_log << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
+
             // cout << "Generated nodes: " << num_generated_high_level_nodes << endl;
             cout << "lowLevelExpanded: " << num_expanded_low_level_nodes << endl;
+            to_log << "lowLevelExpanded: " << num_expanded_low_level_nodes << endl;
+
             cout << "total vertex constraint: " << total_vertex_constraint << endl;
+            to_log << "total vertex constraint: " << total_vertex_constraint << endl;
+
             cout << "total edge constraint: " << total_edge_constraint << endl;
+            to_log << "total edge constraint: " << total_edge_constraint << endl;
+
             cout << "Solution:" << endl;
+            to_log << "Solution:" << endl;
+
             print_node_paths(best_node);
 
             //  A1 LINE 9
