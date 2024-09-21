@@ -12,7 +12,7 @@ total_run_time = 0
 valid_instance_count = 0  # 统计符合条件的实例数量
 
 for i in range(20):
-    instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".yaml"
+    instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".txt"
     # print(instance_name)
 
     # 筛选条件
@@ -31,7 +31,7 @@ for i in range(20):
 
 if is_enough:
     for i in range(20):
-        instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".yaml"
+        instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".txt"
         # print(instance_name)
 
         # 筛选条件
