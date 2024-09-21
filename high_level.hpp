@@ -165,7 +165,7 @@ public:
         std::ifstream from_csv(to_csv_path);
 
         if (!from_csv.is_open()) {
-            std::cerr << "Failed to open from_csv" << std::endl;
+            std::cerr << "Failed to open from_csv " << to_csv_path << std::endl;
             return -1;
         }
 

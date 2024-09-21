@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
     desc.add_options()("help", "produce help message")
             ("input,i", po::value<string>(&input_filename)->required(), "input file (txt)")
-            ("output,o", po::value<string>(&output_filename)->required(), "output file (YAML)")
+            ("output,o", po::value<string>(&output_filename)->required(), "output file (csv)")
             ("disappear-at-goal", po::bool_switch(&is_disappear_at_goal), "make agents to disappear at goal rather than staying there");
 
     try
