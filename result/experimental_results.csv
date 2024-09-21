@@ -230,3 +230,6 @@ id,instance,device,method,disappear_at_goal,rand_seed,cost,run_time,comment,meth
 -1,map_8by8_obst12_agents8_ex10.txt,12400F,whoenig-isolated,0,-1,59,0.608,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:21:36
 -1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.652,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:22:49
 -1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.706,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:22:51
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.583,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:25:51
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.636,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:25:59
+-1,map_8by8_obst12_agents8_ex10.txt,12400F,cbs-mine,0,-1,59,0.568,NULL,https://github.com/ssfc/conflict-based-search,2024-09-21 14:26:05
