@@ -244,7 +244,7 @@ public:
             if(result.device == "12400F"
                && result.instance == instance
                && result.method == "cbs-mine"
-               && result.disappear_at_goal == 1
+               && result.disappear_at_goal == 0
                && result.rand_seed == -1
                     )
             {

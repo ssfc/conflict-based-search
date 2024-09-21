@@ -338,6 +338,23 @@ bool HighLevel::high_level_search()
         {
             std::ofstream to_log(to_log_name, std::ios::out);
 
+            std::ofstream to_csv(to_csv_path, std::ios::app);  // 以追加模式打开文件
+            if (!to_csv.is_open()) {
+                std::cerr << "Error opening csv!" << std::endl;
+                return false;
+            }
+
+            to_csv << -1 << ","; // id
+
+            std::filesystem::path filePath(instance_filename);
+            std::string instance = filePath.filename().string(); // 提取文件名部分
+            to_csv << instance << ","; // instance
+
+            to_csv << "12400F" << ","; // device
+            to_csv << "cbs-mine" << ","; // method
+            to_csv << 0 << ","; // disappear or not
+            to_csv << -1 << ","; // random seed
+
             cout <<"\nFound a solution! \n";
             to_log <<"Found a solution! \n";
 
@@ -349,6 +366,21 @@ bool HighLevel::high_level_search()
 
             cout << "Sum of costs: " << best_node.cost << endl;
             to_log << "Sum of costs: " << best_node.cost << endl;
+            to_csv << best_node.cost << ",";
+
+            to_csv << elapsed_time << ",";
+            to_csv << "NULL" << ","; // comment
+            to_csv << "https://github.com/ssfc/conflict-based-search" << ","; // method source
+
+            // 获取当前时间点
+            auto now = std::chrono::system_clock::now();
+
+            // 转换为 time_t 格式
+            std::time_t currentTime = std::chrono::system_clock::to_time_t(now);
+
+            // 输出时间
+            to_csv << std::put_time(std::localtime(&currentTime), "%Y-%m-%d %H:%M:%S")
+                    << "\n";
 
             cout << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
             to_log << "HighLevelExpanded: " << num_expanded_high_level_nodes << endl;
