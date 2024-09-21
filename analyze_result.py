@@ -11,7 +11,7 @@ is_enough = True
 total_run_time = 0
 valid_instance_count = 0  # 统计符合条件的实例数量
 
-for i in range(20):
+for i in range(5, 20):
     instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".txt"
     # print(instance_name)
 
@@ -30,7 +30,7 @@ for i in range(20):
         break
 
 if is_enough:
-    for i in range(20):
+    for i in range(5, 20):
         instance_name = 'map_8by8_obst12_agents8_ex' + str(i) + ".txt"
         # print(instance_name)
 
@@ -53,4 +53,4 @@ if is_enough:
     # 计算所有实例的平均 run_time
     overall_avg_run_time = total_run_time / valid_instance_count
     print(f"Overall average run_time for ex0 to ex19: {overall_avg_run_time}")
-    # Overall average run_time for ex0 to ex19: 39.90578464428572
+    # Overall average run_time for ex0 to ex19: 2.5469608666666668
