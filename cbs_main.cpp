@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
 
     ///*  CBS test
     // string instance_filename = argv[1];
-    if(input_filename == "ex5-ex10")
+    if(input_filename == "../benchmark/8x8_obst12_txt/")
     {
         for(int i=5;i<10;i++)
         {
