@@ -66,5 +66,4 @@ int main(int argc, char *argv[])
 // ./cbs_mine -i ./benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o output.yaml
 
 // Test on windows platform:
-// 配置程序实参 -i ../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o output.yaml
-
+//  -i ../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex10.txt -o ../result/experimental_results.csv
