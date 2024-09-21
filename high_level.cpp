@@ -8,8 +8,10 @@
 
 using namespace std;
 
-HighLevel::HighLevel(string input_filename):
+HighLevel::HighLevel(string input_filename,
+                     string  _to_filename):
         instance_filename(std::move(input_filename)),
+        to_log_name(std::move(_to_filename)),
         num_rows(0),
         num_columns(0),
         num_agents(0),

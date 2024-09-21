@@ -62,6 +62,7 @@ class HighLevel
 private:
     // IO var;
     std::string instance_filename;
+    std::string to_log_name;
 
     // data structure var;
     size_t num_rows;
@@ -84,7 +85,8 @@ private:
     size_t total_edge_constraint;
 
 public:
-    HighLevel(std::string input_filename); // constructor
+    HighLevel(std::string input_filename,
+              std::string  _to_filename); // constructor
 
     // Q: 页面中函数unordered_map<Location, int> compute_agent_h_values(Location input_goal)的功能是什么？
     // 函数的功能是计算一个启发式表，用于存储从地图上每个位置到目标位置(终点)的最短路径。

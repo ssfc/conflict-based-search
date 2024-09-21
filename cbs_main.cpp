@@ -50,7 +50,7 @@ int main(int argc, char *argv[])
 
     ///*  CBS test
     // string instance_filename = argv[1];
-    HighLevel test_cbs(input_filename);
+    HighLevel test_cbs(input_filename, output_filename);
     // test_cbs.print_map();
     test_cbs.high_level_search();
 
