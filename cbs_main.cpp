@@ -50,9 +50,22 @@ int main(int argc, char *argv[])
 
     ///*  CBS test
     // string instance_filename = argv[1];
-    HighLevel test_cbs(input_filename, output_filename);
-    // test_cbs.print_map();
-    test_cbs.high_level_search();
+    if(input_filename == "ex5-ex10")
+    {
+        for(int i=5;i<10;i++)
+        {
+            string instance_name = "../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex" +
+                    std::to_string(10) + ".txt";
+            HighLevel test_cbs(instance_name, output_filename);
+            test_cbs.high_level_search();
+        }
+    }
+    else
+    {
+        HighLevel test_cbs(input_filename, output_filename);
+        // test_cbs.print_map();
+        test_cbs.high_level_search();
+    }
 
     // LowLevel test_low_level(test_cbs.get_map(), test_cbs.get_agents());
     // test_low_level.print_map();
