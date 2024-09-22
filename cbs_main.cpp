@@ -174,11 +174,12 @@ int main(int argc, char *argv[])
 
     ///*  CBS test
     // string instance_filename = argv[1];
-    if(input_filename == "../benchmark/8x8_obst12_txt/")
+    if(input_filename == "../benchmark/8x8_obst12_txt/"
+    || input_filename == "./benchmark/8x8_obst12_txt/")
     {
         for(int i=5;i<10;i++)
         {
-            string instance_name = "../benchmark/8x8_obst12_txt/map_8by8_obst12_agents8_ex" +
+            string instance_name = input_filename + "map_8by8_obst12_agents8_ex" +
                     std::to_string(i) + ".txt";
 
             auto freq = count_freqs(instance_name, output_filename);
