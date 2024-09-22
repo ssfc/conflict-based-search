@@ -204,9 +204,20 @@ int main(int argc, char *argv[])
     }
     else
     {
-        HighLevel test_cbs(input_filename, output_filename);
-        // test_cbs.print_map();
-        test_cbs.high_level_search();
+        auto freq = count_freqs(input_filename, output_filename);
+        std::cout << "freq: " << freq << std::endl;
+
+        if (freq >= 5)
+        {
+            std::cout << "Already have more than 5 results on this Device-Instance-Method-Disappear-Seed"
+                      << std::endl;
+        }
+        else
+        {
+            HighLevel test_cbs(input_filename, output_filename);
+            // test_cbs.print_map();
+            test_cbs.high_level_search();
+        }
     }
 
     // LowLevel test_low_level(test_cbs.get_map(), test_cbs.get_agents());
