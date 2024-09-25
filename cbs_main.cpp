@@ -202,12 +202,12 @@ int main(int argc, char *argv[])
             }
         }
     }
-    else if(input_filename == "../benchmark/8x8_obst12_txt/"
-       || input_filename == "./benchmark/8x8_obst12_txt/")
+    else if(input_filename == "../benchmark/32x32_obst204_txt/"
+       || input_filename == "./benchmark/32x32_obst204_txt/")
     {
-        for(int i=5;i<10;i++)
+        for(int i=0;i<20;i++)
         {
-            string instance_name = input_filename + "map_8by8_obst12_agents8_ex" +
+            string instance_name = input_filename + "map_32by32_obst204_agents30_ex" +
                                    std::to_string(i) + ".txt";
 
             auto freq = count_freqs(instance_name, output_filename);
