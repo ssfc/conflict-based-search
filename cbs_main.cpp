@@ -202,6 +202,34 @@ int main(int argc, char *argv[])
             }
         }
     }
+    else if(input_filename == "../benchmark/8x8_obst12_txt/"
+       || input_filename == "./benchmark/8x8_obst12_txt/")
+    {
+        for(int i=5;i<10;i++)
+        {
+            string instance_name = input_filename + "map_8by8_obst12_agents8_ex" +
+                                   std::to_string(i) + ".txt";
+
+            auto freq = count_freqs(instance_name, output_filename);
+            std::cout << "freq: " << freq << std::endl;
+
+            if (freq >= 5)
+            {
+                std::cout << "Already have more than 5 results on this Device-Instance-Method-Disappear-Seed"
+                          << std::endl;
+            }
+            else
+            {
+                // 如果不够, 就算到够为止
+                while(freq < 5)
+                {
+                    HighLevel test_cbs(instance_name, output_filename);
+                    test_cbs.high_level_search();
+                    freq++;
+                }
+            }
+        }
+    }
     else
     {
         auto freq = count_freqs(input_filename, output_filename);
